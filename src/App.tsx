@@ -9,12 +9,19 @@ import { SettingsPage } from './components/SettingsPage';
 import { HistoryPage } from './components/HistoryPage';
 import { BookCategoryPage } from './components/BookCategoryPage';
 import { BookReaderPage } from './components/BookReaderPage';
+import { DataMasterPage } from './components/DataMasterPage';
+import { WalkInLoanPage } from './components/WalkInLoanPage';
+import { BookingPage } from './components/BookingPage';
+import { ReportsPage } from './components/ReportsPage';
+import { AdvancedSearchPage } from './components/AdvancedSearchPage';
+import { ApprovalPage } from './components/ApprovalPage';
+import { LoanRecapPage } from './components/LoanRecapPage';
 import { Toaster } from './components/ui/sonner';
 import { toast } from 'sonner@2.0.3';
 import * as auth from './utils/auth';
 import { projectId, publicAnonKey } from './utils/supabase/info';
 
-export type Page = 'home' | 'collection' | 'favorites' | 'reading-now' | 'profile' | 'settings' | 'history' | 'category' | 'reader';
+export type Page = 'home' | 'collection' | 'favorites' | 'reading-now' | 'profile' | 'settings' | 'history' | 'category' | 'reader' | 'data-master' | 'walk-in-loan' | 'booking' | 'reports' | 'advanced-search' | 'approval' | 'loan-recap';
 
 export interface User {
   name: string;
@@ -290,6 +297,20 @@ export default function App() {
             bookId={selectedBookId || 0}
           />
         );
+      case 'data-master':
+        return <DataMasterPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'walk-in-loan':
+        return <WalkInLoanPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'booking':
+        return <BookingPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'reports':
+        return <ReportsPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'advanced-search':
+        return <AdvancedSearchPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'approval':
+        return <ApprovalPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
+      case 'loan-recap':
+        return <LoanRecapPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
       default:
         return <LibraryPage user={user} onLogout={handleLogout} onNavigate={handleNavigate} />;
     }

@@ -1,7 +1,7 @@
 
-  # web perpustakaann (Community)
+  # PERPUS REVISI
 
-  This is a code bundle for web perpustakaann (Community). The original project is available at https://www.figma.com/design/wWJzbXWYeaImgB6byBeci8/web-perpustakaann--Community-.
+  This is a code bundle for PERPUS REVISI. The original project is available at https://www.figma.com/design/wWJzbXWYeaImgB6byBeci8/PERPUS-REVISI.
 
   ## Running the code
 

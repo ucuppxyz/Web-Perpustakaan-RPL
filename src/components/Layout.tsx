@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
-import { Search, BookOpen, LogOut, User, Settings, History } from 'lucide-react';
+import { Search, BookOpen, LogOut, User, Settings, History, Database, FileText, Calendar, BarChart3, ShieldCheck, UserCheck, TrendingUp } from 'lucide-react';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+// Dropdown menu components - updated
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -80,7 +81,15 @@ export function Layout({ user, onLogout, onNavigate, currentPage, children }: La
                 <DropdownMenuContent className="w-56" align="end">
                   <DropdownMenuLabel>
                     <div className="flex flex-col space-y-1">
-                      <p>{user?.name}</p>
+                      <div className="flex items-center gap-2">
+                        <p>{user?.name}</p>
+                        {user?.role === 'admin' && (
+                          <span className="flex items-center gap-1 px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[10px] rounded-full">
+                            <ShieldCheck className="w-3 h-3" />
+                            Admin
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs text-gray-500">{user?.email}</p>
                     </div>
                   </DropdownMenuLabel>
@@ -89,14 +98,48 @@ export function Layout({ user, onLogout, onNavigate, currentPage, children }: La
                     <User className="mr-2 h-4 w-4" />
                     Profil
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => onNavigate('settings')}>
-                    <Settings className="mr-2 h-4 w-4" />
-                    Pengaturan
-                  </DropdownMenuItem>
+                  {user?.role !== 'admin' && (
+                    <DropdownMenuItem onClick={() => onNavigate('booking')}>
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Booking Buku
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuItem onClick={() => onNavigate('history')}>
                     <History className="mr-2 h-4 w-4" />
                     Riwayat
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => onNavigate('settings')}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    Pengaturan
+                  </DropdownMenuItem>
+                  {user?.role === 'admin' && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuLabel className="text-xs text-gray-500">
+                        Menu Admin
+                      </DropdownMenuLabel>
+                      <DropdownMenuItem onClick={() => onNavigate('data-master')}>
+                        <Database className="mr-2 h-4 w-4" />
+                        Data Master
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onNavigate('walk-in-loan')}>
+                        <FileText className="mr-2 h-4 w-4" />
+                        Peminjaman Walk-in
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onNavigate('approval')}>
+                        <UserCheck className="mr-2 h-4 w-4" />
+                        Approval Booking
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onNavigate('loan-recap')}>
+                        <TrendingUp className="mr-2 h-4 w-4" />
+                        Rekap Peminjaman
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onNavigate('reports')}>
+                        <BarChart3 className="mr-2 h-4 w-4" />
+                        Laporan
+                      </DropdownMenuItem>
+                    </>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={onLogout} className="text-red-600">
                     <LogOut className="mr-2 h-4 w-4" />
@@ -208,7 +251,7 @@ export function Layout({ user, onLogout, onNavigate, currentPage, children }: La
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>Jl. Dampyak NO.123, Dampyak selatan</span>
+                  <span>Jl. Pendidikan No. 123, Tegal</span>
                 </li>
               </ul>
             </div>

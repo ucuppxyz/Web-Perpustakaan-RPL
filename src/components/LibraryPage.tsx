@@ -104,10 +104,16 @@ export function LibraryPage({ user, onLogout, onNavigate }: LibraryPageProps) {
             <Input
               type="text"
               placeholder="Cari judul buku, penulis, atau kategori..."
-              className="pl-12 pr-4 py-6 w-full shadow-lg border-2 border-transparent focus:border-indigo-400 bg-white rounded-2xl"
+              className="pl-12 pr-32 py-6 w-full shadow-lg border-2 border-transparent focus:border-indigo-400 bg-white rounded-2xl"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            <Button
+              onClick={() => onNavigate('advanced-search')}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-indigo-600 to-purple-600"
+            >
+              Pencarian Lanjutan
+            </Button>
           </div>
         </div>
 

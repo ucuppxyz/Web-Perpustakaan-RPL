@@ -392,6 +392,11 @@ export const getPopularBooks = (): Book[] => {
   return allBooks.filter((book) => book.popular);
 };
 
+// Get all books
+export const getAllBooks = (): Book[] => {
+  return allBooks;
+};
+
 // Get book by ID
 export const getBookById = (id: number): Book | undefined => {
   return allBooks.find((book) => book.id === id);
